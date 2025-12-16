@@ -16,17 +16,17 @@ std::string Circle::getType() const {
 }
 
 void Circle::draw() const {
-    std::cout << "[LOG] Рисуем круг №" << id << " с радиусом " << radius << std::endl;
+    std::cout << "[LOG] Drawing circle #" << id << " with radius " << radius << std::endl;
 }
 
 std::string Circle::getInfo() const {
-    return "Примитив 'Круг' №" + std::to_string(id) + " (радиус: " + 
+    return "Primitive 'Circle' #" + std::to_string(id) + " (radius: " + 
            std::to_string(radius) + ")";
 }
 
 void Circle::setRadius(double r) {
     radius = r;
-    std::cout << "[LOG] Радиус круга №" << id << " изменен на " << radius << std::endl;
+    std::cout << "[LOG] Circle #" << id << " radius changed to " << radius << std::endl;
 }
 
 double Circle::getRadius() const {
@@ -49,21 +49,21 @@ std::string Rectangle::getType() const {
 }
 
 void Rectangle::draw() const {
-    std::cout << "[LOG] Рисуем прямоугольник №" << id 
-              << " (ширина: " << width << ", высота: " << height << ")" << std::endl;
+    std::cout << "[LOG] Drawing rectangle #" << id 
+              << " (width: " << width << ", height: " << height << ")" << std::endl;
 }
 
 std::string Rectangle::getInfo() const {
-    return "Примитив 'Прямоугольник' №" + std::to_string(id) + 
-           " (ширина: " + std::to_string(width) + ", высота: " + 
+    return "Primitive 'Rectangle' #" + std::to_string(id) + 
+           " (width: " + std::to_string(width) + ", height: " + 
            std::to_string(height) + ")";
 }
 
 void Rectangle::setDimensions(double w, double h) {
     width = w;
     height = h;
-    std::cout << "[LOG] Размеры прямоугольника №" << id 
-              << " изменены на (" << width << " x " << height << ")" << std::endl;
+    std::cout << "[LOG] Rectangle #" << id 
+              << " dimensions changed to (" << width << " x " << height << ")" << std::endl;
 }
 
 double Rectangle::getWidth() const {
@@ -90,15 +90,15 @@ std::string Line::getType() const {
 }
 
 void Line::draw() const {
-    std::cout << "[LOG] Рисуем линию №" << id 
-              << " от (" << x1 << ", " << y1 << ") до (" 
+    std::cout << "[LOG] Drawing line #" << id 
+              << " from (" << x1 << ", " << y1 << ") to (" 
               << x2 << ", " << y2 << ")" << std::endl;
 }
 
 std::string Line::getInfo() const {
-    return "Примитив 'Линия' №" + std::to_string(id) + 
-           " от (" + std::to_string(x1) + ", " + std::to_string(y1) + 
-           ") до (" + std::to_string(x2) + ", " + std::to_string(y2) + ")";
+    return "Primitive 'Line' #" + std::to_string(id) + 
+           " from (" + std::to_string(x1) + ", " + std::to_string(y1) + 
+           ") to (" + std::to_string(x2) + ", " + std::to_string(y2) + ")";
 }
 
 void Line::setCoordinates(double x1, double y1, double x2, double y2) {
@@ -106,5 +106,5 @@ void Line::setCoordinates(double x1, double y1, double x2, double y2) {
     this->y1 = y1;
     this->x2 = x2;
     this->y2 = y2;
-    std::cout << "[LOG] Координаты линии №" << id << " изменены" << std::endl;
+    std::cout << "[LOG] Line #" << id << " coordinates changed" << std::endl;
 }

@@ -1,7 +1,7 @@
 #include "include/model/Document.h"
 #include <iostream>
 
-// Инициализация статического счетчика документов
+// Document static counter initialization
 int Document::documentCounter = 0;
 
 // ============================================================================
@@ -11,12 +11,12 @@ int Document::documentCounter = 0;
 Document::Document(const std::string& name)
     : documentName(name) {
     documentId = ++documentCounter;
-    std::cout << "[LOG] Создан документ №" << documentId 
-              << " с именем '" << documentName << "'" << std::endl;
+    std::cout << "[LOG] Document #" << documentId 
+              << " created with name '" << documentName << "'" << std::endl;
 }
 
 Document::~Document() {
-    std::cout << "[LOG] Документ №" << documentId << " удален" << std::endl;
+    std::cout << "[LOG] Document #" << documentId << " deleted" << std::endl;
 }
 
 int Document::getId() const {
@@ -29,34 +29,33 @@ std::string Document::getName() const {
 
 void Document::setName(const std::string& name) {
     documentName = name;
-    std::cout << "[LOG] Документ №" << documentId 
-              << " переименован на '" << documentName << "'" << std::endl;
+    std::cout << "[LOG] Document #" << documentId 
+              << " renamed to '" << documentName << "'" << std::endl;
 }
 
 void Document::addPrimitive(std::shared_ptr<Primitive> primitive) {
     if (!primitive) {
-        std::cout << "[ERROR] Попытка добавить nullptr примитив" << std::endl;
+        std::cout << "[ERROR] Attempt to add nullptr primitive" << std::endl;
         return;
     }
     primitives.push_back(primitive);
-    std::cout << "[LOG] В документ №" << documentId 
-              << " добавлен примитив " << primitive->getType() 
-              << " №" << primitive->getId() << std::endl;
+    std::cout << "[LOG] Added primitive " << primitive->getType() 
+              << " #" << primitive->getId() << " to document #" << documentId << std::endl;
 }
 
 bool Document::removePrimitive(int primitiveId) {
     auto it = primitives.begin();
     while (it != primitives.end()) {
         if ((*it)->getId() == primitiveId) {
-            std::cout << "[LOG] Из документа №" << documentId 
-                      << " удален примитив №" << primitiveId << std::endl;
+            std::cout << "[LOG] Removed primitive #" << primitiveId 
+                      << " from document #" << documentId << std::endl;
             primitives.erase(it);
             return true;
         }
         ++it;
     }
-    std::cout << "[ERROR] Примитив №" << primitiveId 
-              << " не найден в документе №" << documentId << std::endl;
+    std::cout << "[ERROR] Primitive #" << primitiveId 
+              << " not found in document #" << documentId << std::endl;
     return false;
 }
 
@@ -78,21 +77,21 @@ size_t Document::getPrimitiveCount() const {
 }
 
 void Document::drawAll() const {
-    std::cout << "\n========== Отрисовка документа №" << documentId 
-              << " '" << documentName << "' ==========" << std::endl;
-    std::cout << "Количество примитивов: " << primitives.size() << std::endl;
+    std::cout << "\n========== Document #" << documentId 
+              << " '" << documentName << "' Drawing ==========" << std::endl;
+    std::cout << "Number of primitives: " << primitives.size() << std::endl;
     
     for (const auto& prim : primitives) {
         prim->draw();
     }
     
-    std::cout << "========== Конец отрисовки ==========" << std::endl << std::endl;
+    std::cout << "========== End of Drawing ==========" << std::endl << std::endl;
 }
 
 std::string Document::getDocumentInfo() const {
-    std::string info = "Документ №" + std::to_string(documentId) + 
-                      " '" + documentName + "' содержит " + 
-                      std::to_string(primitives.size()) + " примитив(ов):\n";
+    std::string info = "Document #" + std::to_string(documentId) + 
+                      " '" + documentName + "' contains " + 
+                      std::to_string(primitives.size()) + " primitive(s):\n";
     
     for (const auto& prim : primitives) {
         info += "  - " + prim->getInfo() + "\n";
@@ -103,5 +102,5 @@ std::string Document::getDocumentInfo() const {
 
 void Document::clear() {
     primitives.clear();
-    std::cout << "[LOG] Документ №" << documentId << " очищен" << std::endl;
+    std::cout << "[LOG] Document #" << documentId << " cleared" << std::endl;
 }

@@ -1,6 +1,5 @@
 #include "include/Application.h"
 #include <iostream>
-#include <windows.h>
 
 /**
  * @file main.cpp
@@ -15,10 +14,6 @@
 
 int main() {
     try {
-
-        SetConsoleCP(CP_UTF8);
-        SetConsoleOutputCP(CP_UTF8);
-
 
         // Создание экземпляра приложения
         Application app;

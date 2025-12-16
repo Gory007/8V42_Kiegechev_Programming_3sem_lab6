@@ -11,9 +11,9 @@
 VectorEditorController::VectorEditorController(std::shared_ptr<IView> view)
     : view(view), primitiveIdCounter(0) {
     if (!view) {
-        std::cerr << "[ERROR] Контроллер инициализирован с nullptr view" << std::endl;
+        std::cerr << "[ERROR] Controller initialized with nullptr view" << std::endl;
     }
-    std::cout << "[LOG] VectorEditorController инициализирован" << std::endl;
+    std::cout << "[LOG] VectorEditorController initialized" << std::endl;
 }
 
 void VectorEditorController::createNewDocument(const std::string& documentName) {
@@ -21,64 +21,64 @@ void VectorEditorController::createNewDocument(const std::string& documentName) 
     primitiveIdCounter = 0;
     
     if (view) {
-        view->showSuccess("Новый документ '" + documentName + "' создан");
+        view->showSuccess("New document '" + documentName + "' created");
     }
 }
 
 void VectorEditorController::openDocument(const std::string& filePath) {
-    // Минимальная реализация для демонстрации
-    std::cout << "[LOG] Попытка открыть документ из файла: " << filePath << std::endl;
+    // Minimal implementation for demonstration
+    std::cout << "[LOG] Attempting to open document from file: " << filePath << std::endl;
     
     std::ifstream file(filePath);
     if (!file.is_open()) {
         if (view) {
-            view->showError("Не удалось открыть файл: " + filePath);
+            view->showError("Failed to open file: " + filePath);
         }
         return;
     }
     
-    // Создаем новый документ с названием файла
+    // Create new document with file name
     currentDocument = std::make_shared<Document>(filePath);
     file.close();
     
     if (view) {
-        view->showSuccess("Документ загружен из файла: " + filePath);
+        view->showSuccess("Document loaded from file: " + filePath);
     }
 }
 
 void VectorEditorController::saveDocument(const std::string& filePath) {
     if (!currentDocument) {
         if (view) {
-            view->showError("Нет открытого документа для сохранения");
+            view->showError("No open document to save");
         }
         return;
     }
     
-    // Минимальная реализация для демонстрации
+    // Minimal implementation for demonstration
     std::ofstream file(filePath);
     if (!file.is_open()) {
         if (view) {
-            view->showError("Не удалось создать файл: " + filePath);
+            view->showError("Failed to create file: " + filePath);
         }
         return;
     }
     
-    std::cout << "[LOG] Сохраняем документ №" << currentDocument->getId() 
-              << " в файл: " << filePath << std::endl;
+    std::cout << "[LOG] Saving document #" << currentDocument->getId() 
+              << " to file: " << filePath << std::endl;
     
     file << "Document: " << currentDocument->getName() << std::endl;
     file << "Primitives: " << currentDocument->getPrimitiveCount() << std::endl;
     file.close();
     
     if (view) {
-        view->showSuccess("Документ сохранен в: " + filePath);
+        view->showSuccess("Document saved to: " + filePath);
     }
 }
 
 void VectorEditorController::addCircle(double radius) {
     if (!currentDocument) {
         if (view) {
-            view->showError("Нет открытого документа. Создайте новый документ");
+            view->showError("No open document. Create new document first");
         }
         return;
     }
@@ -87,14 +87,14 @@ void VectorEditorController::addCircle(double radius) {
     currentDocument->addPrimitive(circle);
     
     if (view) {
-        view->showSuccess("Круг добавлен: радиус = " + std::to_string(radius));
+        view->showSuccess("Circle added: radius = " + std::to_string(radius));
     }
 }
 
 void VectorEditorController::addRectangle(double width, double height) {
     if (!currentDocument) {
         if (view) {
-            view->showError("Нет открытого документа. Создайте новый документ");
+            view->showError("No open document. Create new document first");
         }
         return;
     }
@@ -103,7 +103,7 @@ void VectorEditorController::addRectangle(double width, double height) {
     currentDocument->addPrimitive(rectangle);
     
     if (view) {
-        view->showSuccess("Прямоугольник добавлен: " + std::to_string(width) + 
+        view->showSuccess("Rectangle added: " + std::to_string(width) + 
                          " x " + std::to_string(height));
     }
 }
@@ -111,7 +111,7 @@ void VectorEditorController::addRectangle(double width, double height) {
 void VectorEditorController::addLine(double x1, double y1, double x2, double y2) {
     if (!currentDocument) {
         if (view) {
-            view->showError("Нет открытого документа. Создайте новый документ");
+            view->showError("No open document. Create new document first");
         }
         return;
     }
@@ -120,7 +120,7 @@ void VectorEditorController::addLine(double x1, double y1, double x2, double y2)
     currentDocument->addPrimitive(line);
     
     if (view) {
-        view->showSuccess("Линия добавлена: (" + std::to_string(x1) + ", " + 
+        view->showSuccess("Line added: (" + std::to_string(x1) + ", " + 
                          std::to_string(y1) + ") -> (" + std::to_string(x2) + 
                          ", " + std::to_string(y2) + ")");
     }
@@ -129,18 +129,18 @@ void VectorEditorController::addLine(double x1, double y1, double x2, double y2)
 void VectorEditorController::removePrimitive(int primitiveId) {
     if (!currentDocument) {
         if (view) {
-            view->showError("Нет открытого документа");
+            view->showError("No open document");
         }
         return;
     }
     
     if (currentDocument->removePrimitive(primitiveId)) {
         if (view) {
-            view->showSuccess("Примитив №" + std::to_string(primitiveId) + " удален");
+            view->showSuccess("Primitive #" + std::to_string(primitiveId) + " removed");
         }
     } else {
         if (view) {
-            view->showError("Примитив №" + std::to_string(primitiveId) + " не найден");
+            view->showError("Primitive #" + std::to_string(primitiveId) + " not found");
         }
     }
 }
@@ -148,7 +148,7 @@ void VectorEditorController::removePrimitive(int primitiveId) {
 void VectorEditorController::displayDocument() {
     if (!currentDocument) {
         if (view) {
-            view->showError("Нет открытого документа для отображения");
+            view->showError("No open document to display");
         }
         return;
     }

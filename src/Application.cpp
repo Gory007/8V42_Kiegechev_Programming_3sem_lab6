@@ -8,42 +8,42 @@
 // ============================================================================
 
 Application::Application() {
-    std::cout << "[LOG] Приложение инициализируется..." << std::endl;
+    std::cout << "[LOG] Application initialization..." << std::endl;
 }
 
 Application::~Application() {
-    std::cout << "[LOG] Приложение завершает работу" << std::endl;
+    std::cout << "[LOG] Application shutdown" << std::endl;
 }
 
 void Application::initialize() {
-    // Создание View (консольное представление)
+    // Create View (console representation)
     view = std::make_shared<ConsoleView>();
-    std::cout << "[LOG] ConsoleView создан" << std::endl;
+    std::cout << "[LOG] ConsoleView created" << std::endl;
     
-    // Создание Controller с привязкой к View
+    // Create Controller with View binding
     controller = std::make_shared<VectorEditorController>(view);
-    std::cout << "[LOG] VectorEditorController создан и привязан к View" << std::endl;
+    std::cout << "[LOG] VectorEditorController created and bound to View" << std::endl;
     
-    std::cout << "[LOG] Приложение успешно инициализировано (MVC архитектура готова)" << std::endl;
+    std::cout << "[LOG] Application successfully initialized (MVC architecture ready)" << std::endl;
 }
 
 void Application::run() {
-    std::cout << "\n╔══════════════════════════════════════════════════════╗" << std::endl;
-    std::cout << "║     ДЕМОНСТРАЦИЯ ВЕКТОРНОГО РЕДАКТОРА (MVC)          ║" << std::endl;
-    std::cout << "║            Принципы SOLID и DRY                      ║" << std::endl;
-    std::cout << "╚══════════════════════════════════════════════════════╝\n" << std::endl;
+    std::cout << "\n====================================================" << std::endl;
+    std::cout << "     VECTOR EDITOR DEMONSTRATION (MVC)" << std::endl;
+    std::cout << "            SOLID and DRY Principles" << std::endl;
+    std::cout << "====================================================" << std::endl << std::endl;
     
     if (!controller) {
-        std::cerr << "[ERROR] Контроллер не инициализирован" << std::endl;
+        std::cerr << "[ERROR] Controller not initialized" << std::endl;
         return;
     }
     
-    // ========== ДЕМОНСТРАЦИЯ 1: Создание документа ==========
-    std::cout << "\n>>> Шаг 1: Создание нового документа" << std::endl;
-    controller->createNewDocument("Мой первый вектор");
+    // ========== DEMONSTRATION 1: Create document ==========
+    std::cout << "\n>>> Step 1: Create new document" << std::endl;
+    controller->createNewDocument("My First Vector");
     
-    // ========== ДЕМОНСТРАЦИЯ 2: Добавление примитивов ==========
-    std::cout << "\n>>> Шаг 2: Добавление графических примитивов" << std::endl;
+    // ========== DEMONSTRATION 2: Add primitives ==========
+    std::cout << "\n>>> Step 2: Add graphic primitives" << std::endl;
     
     controller->addCircle(5.0);
     controller->addCircle(10.0);
@@ -52,33 +52,33 @@ void Application::run() {
     controller->addLine(0.0, 0.0, 100.0, 100.0);
     controller->addLine(50.0, 50.0, 150.0, 75.0);
     
-    // ========== ДЕМОНСТРАЦИЯ 3: Отображение документа ==========
-    std::cout << "\n>>> Шаг 3: Отображение содержимого документа" << std::endl;
+    // ========== DEMONSTRATION 3: Display document ==========
+    std::cout << "\n>>> Step 3: Display document content" << std::endl;
     controller->displayDocument();
     
-    // ========== ДЕМОНСТРАЦИЯ 4: Удаление примитива ==========
-    std::cout << "\n>>> Шаг 4: Удаление примитива №3" << std::endl;
+    // ========== DEMONSTRATION 4: Remove primitive ==========
+    std::cout << "\n>>> Step 4: Remove primitive number 3" << std::endl;
     controller->removePrimitive(3);
     
-    // ========== ДЕМОНСТРАЦИЯ 5: Повторное отображение ==========
-    std::cout << "\n>>> Шаг 5: Повторное отображение документа после удаления" << std::endl;
+    // ========== DEMONSTRATION 5: Display again ==========
+    std::cout << "\n>>> Step 5: Display document after removal" << std::endl;
     controller->displayDocument();
     
-    // ========== ДЕМОНСТРАЦИЯ 6: Сохранение документа ==========
-    std::cout << "\n>>> Шаг 6: Сохранение документа в файл" << std::endl;
+    // ========== DEMONSTRATION 6: Save document ==========
+    std::cout << "\n>>> Step 6: Save document to file" << std::endl;
     controller->saveDocument("document_output.txt");
     
-    // ========== ДЕМОНСТРАЦИЯ 7: Создание второго документа ==========
-    std::cout << "\n>>> Шаг 7: Создание второго документа" << std::endl;
-    controller->createNewDocument("Второй документ");
+    // ========== DEMONSTRATION 7: Create second document ==========
+    std::cout << "\n>>> Step 7: Create second document" << std::endl;
+    controller->createNewDocument("Second Document");
     controller->addCircle(8.0);
     controller->addRectangle(40.0, 30.0);
     controller->displayDocument();
     
-    // ========== ИТОГИ ==========
-    std::cout << "\n╔══════════════════════════════════════════════════════╗" << std::endl;
-    std::cout << "║              ДЕМОНСТРАЦИЯ ЗАВЕРШЕНА                   ║" << std::endl;
-    std::cout << "╚══════════════════════════════════════════════════════╝\n" << std::endl;
+    // ========== SUMMARY ==========
+    std::cout << "\n====================================================" << std::endl;
+    std::cout << "              DEMONSTRATION COMPLETED" << std::endl;
+    std::cout << "====================================================" << std::endl << std::endl;
 }
 
 std::shared_ptr<IController> Application::getController() const {
