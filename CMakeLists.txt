@@ -5,6 +5,23 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
 
+set_property(DIRECTORY . PROPERTY CMAKE_CONFIGURE_DEPENDS main.cpp)
+
+if(GIT_FOUND)
+    execute_process(
+        COMMAND ${GIT_EXECUTABLE} rev-list --all --count
+
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE GIT_COMMIT_COUNT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+
+else()
+    set(GIT_COMMIT_COUNT "0")
+endif()
+
+add_definitions(-DVERSION_PROJECT=${GIT_COMMIT_COUNT})
+
 # Добавляем папку include в пути поиска
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -34,6 +51,25 @@ else()
     # Параметры для GCC/Clang
     target_compile_options(lab6 PRIVATE -Wall -Wextra -Wpedantic -Wno-unused-parameter)
 endif()
+
+
+
+set(CPACK_PACKAGE_NAME "lab6")
+
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+
+if(WIN32)
+    set(CPACK_GENERATOR "ZIP")
+endif()
+
+if(UNIX AND NOT APPLE)
+    set(CPACK_GENERATOR "DEB")
+    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Kiegechev Pavel <kiegechev09@gmail.com>")
+endif()
+
+install(TARGETS lab6 DESTINATION bin)
+
+include(CPack)
 
 message(STATUS "===============================================")
 message(STATUS "VectorEditor Project Configuration")
