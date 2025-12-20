@@ -3,9 +3,8 @@
 #include "include/view/IView.h"
 #include <iostream>
 
-// ============================================================================
+
 // Application Implementation
-// ============================================================================
 
 Application::Application() {
     std::cout << "[LOG] Application initialization..." << std::endl;
@@ -24,13 +23,12 @@ void Application::initialize() {
     controller = std::make_shared<VectorEditorController>(view);
     std::cout << "[LOG] VectorEditorController created and bound to View" << std::endl;
     
-    std::cout << "[LOG] Application successfully initialized (MVC architecture ready)" << std::endl;
+    std::cout << "[LOG] Application successfully initialized" << std::endl;
 }
 
 void Application::run() {
     std::cout << "\n====================================================" << std::endl;
-    std::cout << "     VECTOR EDITOR DEMONSTRATION (MVC)" << std::endl;
-    std::cout << "            SOLID and DRY Principles" << std::endl;
+    std::cout << "     VECTOR EDITOR DEMONSTRATION" << std::endl;
     std::cout << "====================================================" << std::endl << std::endl;
     
     if (!controller) {

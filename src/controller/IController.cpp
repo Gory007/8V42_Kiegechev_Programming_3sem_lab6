@@ -4,9 +4,8 @@
 #include <iostream>
 #include <fstream>
 
-// ============================================================================
 // VectorEditorController Implementation
-// ============================================================================
+
 
 VectorEditorController::VectorEditorController(std::shared_ptr<IView> view)
     : view(view), primitiveIdCounter(0) {

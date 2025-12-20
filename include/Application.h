@@ -10,7 +10,6 @@ class IView;
  * @class Application
  * @brief Главное приложение - точка входа для MVC архитектуры
  * 
- * Инициализирует и координирует компоненты MVC
  */
 class Application {
 private:

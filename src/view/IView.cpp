@@ -2,9 +2,7 @@
 #include "include/model/Document.h"
 #include <iostream>
 
-// ============================================================================
 // ConsoleView Implementation
-// ============================================================================
 
 void ConsoleView::displayDocument(const std::shared_ptr<Document>& document) {
     if (!document) {

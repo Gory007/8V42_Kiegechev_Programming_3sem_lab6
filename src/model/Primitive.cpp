@@ -1,8 +1,8 @@
 #include "include/model/Primitive.h"
 
-// ============================================================================
+
 // Circle Implementation
-// ============================================================================
+
 
 Circle::Circle(int id, double radius) 
     : id(id), radius(radius) {}
@@ -33,9 +33,7 @@ double Circle::getRadius() const {
     return radius;
 }
 
-// ============================================================================
 // Rectangle Implementation
-// ============================================================================
 
 Rectangle::Rectangle(int id, double width, double height)
     : id(id), width(width), height(height) {}
@@ -74,9 +72,8 @@ double Rectangle::getHeight() const {
     return height;
 }
 
-// ============================================================================
 // Line Implementation
-// ============================================================================
+
 
 Line::Line(int id, double x1, double y1, double x2, double y2)
     : id(id), x1(x1), y1(y1), x2(x2), y2(y2) {}

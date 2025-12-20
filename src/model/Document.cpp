@@ -4,9 +4,7 @@
 // Document static counter initialization
 int Document::documentCounter = 0;
 
-// ============================================================================
-// Document Implementation
-// ============================================================================
+
 
 Document::Document(const std::string& name)
     : documentName(name) {

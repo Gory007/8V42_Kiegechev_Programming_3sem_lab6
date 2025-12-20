@@ -70,7 +70,6 @@ public:
  * @brief Конкретная реализация контроллера
  * 
  * Координирует работу Model и View
- * Применяет принцип Dependency Inversion
  */
 class VectorEditorController : public IController {
 private:
